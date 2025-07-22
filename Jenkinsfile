@@ -19,7 +19,7 @@ pipeline {
         stage('Run') {
             steps {
                 echo 'Running the binary...'
-                sh './app'
+                sh './rpg_game'
             }
         }
     }

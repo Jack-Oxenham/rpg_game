@@ -1,19 +1,23 @@
 
-
-CXX = clang++
+CXX ?= g++
 CXXFLAGS = -Wall -std=c++17
 
-TARGET = rpg_game
+SRC_DIR = src
+BUILD_DIR = build
+BIN = app
 
-SRC = RPG.cpp Player.cpp Enemy.cpp Combat.cpp
+SRCS = $(wildcard $(SRC_DIR)/*.cpp)
+OBJS = $(patsubst $(SRC_DIR)/%.cpp, $(BUILD_DIR)/%.o, $(SRCS))
 
-OBJ = $(SRC:.cpp=.o)
+all: $(BIN)
 
-all: $(TARGET)
+$(BIN): $(OBJS)
+	$(CXX) $(CXXFLAGS) -o $@ $^
 
-$(TARGET): $(SRC)
-	$(CXX) $(CXXFLAGS) $(SRC) -o $(TARGET)
-
+$(BUILD_DIR)/%.o: $(SRC_DIR)/%.cpp
+	@mkdir -p $(BUILD_DIR)
+	$(CXX) $(CXXFLAGS) -c -o $@ $<
 
 clean:
-	rm -f $(TARGET) *.o
+	rm -rf $(BUILD_DIR) $(BIN)
+
