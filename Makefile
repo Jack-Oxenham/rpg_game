@@ -1,20 +1,14 @@
-# Compiler and flags
-CXX ?= g++
-CXXFLAGS = -Wall -std=c++17
 
-# Source and target
-SRCS = Player.cpp Enemy.cpp Combat.cpp RPG.cpp
-OBJS = $(SRCS:.cpp=.o)
-BIN = rpg_game
-
-all: $(BIN)
-
-$(BIN): $(OBJS)
-	$(CXX) $(CXXFLAGS) -o $@ $^
-
-%.o: %.cpp
-	$(CXX) $(CXXFLAGS) -c $< -o $@
-
+all: 
+	clang++ -std=c++11 -o RPG Player.cpp Enemy.cpp Combat.cpp Item.cpp RPG.cpp
+	./RPG
 clean:
-	rm -f $(OBJS) $(BIN)
+	rm -f RPG
+	rm -f *.o
+	rm -f *.dSYM
+	rm -f *.exe
+	rm -f *.out
+	rm -f *.log
+	rm -f *.txt
+	rm -f *.dat		
 

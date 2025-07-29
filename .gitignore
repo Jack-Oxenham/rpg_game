@@ -1,4 +1,3 @@
 
-build/
-app
-*.o
+echo "RPG" >> .gitignore
+echo "*.o" >> .gitignore

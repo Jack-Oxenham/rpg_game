@@ -1,6 +1,7 @@
 #include "Player.h"
 #include "Enemy.h"
 #include "Combat.h"
+#include "Item.h"
 #include <iostream>
 #include <cstdlib>
 #include <ctime>
@@ -28,7 +29,7 @@ int main () {
     int choice;
 
     while (gameRunning) {
-
+        
         showMainMenu();
         cin >> choice;
         cin.ignore();
@@ -73,6 +74,15 @@ int main () {
 
                 cout << "You have selected:  " << endl;
                 player.showStats();
+
+                //Add items to inventory
+                Item* potion = new Item("Health Potion", "Restores 50 health points.");
+                player.addItem(potion);
+
+                //view inventory
+                cout << "Your inventory: " << endl;
+                player.showInventory();
+
 
                 //Enemy 
                 Enemy enemy("Goblin", 80, 10);
